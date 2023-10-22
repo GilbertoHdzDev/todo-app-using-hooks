@@ -1,9 +1,10 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { ToDoForm, ListItem } from "./";
 import { taskReducer } from "../helpers/taskReducer";
 
 export const ToDoApp = () => {
     const [tasks, dispatch] = useReducer(taskReducer, []);
+    const [hideCompletedTasks, setHideCompletedTasks] = useState(false);
 
     const handleAddTodo = (newTodo) => {
         dispatch({
@@ -26,21 +27,39 @@ export const ToDoApp = () => {
         });
     };
 
+    const tasksToShow = hideCompletedTasks ?
+        tasks.filter((task) => !task.isCompleted).map((task) => (
+            <ListItem
+                key={task.id}
+                task={task}
+                onEditTodo={handleEditTodo}
+                onDeleteTodo={handleDeleteTodo}
+            />))
+        : tasks.map((task) => (
+            <ListItem
+                key={task.id}
+                task={task}
+                onEditTodo={handleEditTodo}
+                onDeleteTodo={handleDeleteTodo}
+            />));
+
     return (
         <div className="container">
             <div className="todo-wrapper">
                 <h1>Todo List</h1>
                 <hr />
                 <ToDoForm onAddTodo={handleAddTodo} />
+                <input
+                    type="checkbox"
+                    name="hide-completed"
+                    id="hide-completed"
+                    checked={hideCompletedTasks}
+                    onChange={() => setHideCompletedTasks(!hideCompletedTasks)}
+                />
+                <label htmlFor="hide-completed">Hide completed tasks</label>
                 <div className="todo-list">
                     {
-                        tasks.map((task) => (
-                            <ListItem
-                                key={task.id}
-                                task={task}
-                                onEditTodo={handleEditTodo}
-                                onDeleteTodo={handleDeleteTodo}
-                            />))
+                        tasksToShow
                     }
                 </div>
             </div>
@@ -48,11 +67,3 @@ export const ToDoApp = () => {
 
     )
 };
-
-// const createUniqueId = () => {
-//     const dateString = Date.now().toString(36);
-//     const randomness = Math.random().toString(36).substring(2);
-//     console.log(dateString, randomness);
-//     return `${randomness}${dateString};`
-// }
-
