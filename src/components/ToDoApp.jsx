@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { ToDoForm } from "./ToDoForm";
-import { ListItem } from "./ListItem";
+import { ToDoForm, ListItem } from "./";
 
 export const ToDoApp = () => {
     const [tasks, setTasks] = useState([]);

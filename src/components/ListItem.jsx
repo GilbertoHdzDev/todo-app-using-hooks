@@ -49,8 +49,8 @@ export const ListItem = ({ task, onEditTodo, onDeleteTodo }) => {
                     )
                     : (
                         <>
-                            <input type="checkbox" checked={isCompleted} onChange={handleCheckBox} id="is-completed" />
-                            <label htmlFor="is-completed">{inputTask}</label>
+                            <input type="checkbox" checked={isCompleted} onChange={handleCheckBox} id={`is-completed-${id}`} />
+                            <label htmlFor={`is-completed-${id}`}>{inputTask}</label>
                             <button onClick={handleEditing}>Edit</button>
                             <button onClick={handleDelete}>Delete</button>
                         </>
