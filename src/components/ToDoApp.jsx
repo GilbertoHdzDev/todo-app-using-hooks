@@ -1,21 +1,29 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import { ToDoForm, ListItem } from "./";
+import { taskReducer } from "../helpers/taskReducer";
 
 export const ToDoApp = () => {
-    const [tasks, setTasks] = useState([]);
+    const [tasks, dispatch] = useReducer(taskReducer, []);
 
     const handleAddTodo = (newTodo) => {
-        setTasks([...tasks, newTodo]);
+        dispatch({
+            type: "addTodo",
+            ...newTodo
+        });
     };
 
     const handleEditTodo = (editedTask) => {
-        const updatedTasks = tasks.map((task) => task.id === editedTask.id ? editedTask : task);
-        setTasks(updatedTasks);
+        dispatch({
+            type: "editTodo",
+            ...editedTask
+        });
     };
 
     const handleDeleteTodo = (idTask) => {
-        const updatedTasks = tasks.filter((task) => task.id !== idTask);
-        setTasks(updatedTasks);
+        dispatch({
+            type: "deleteTodo",
+            id: idTask
+        });
     };
 
     return (
