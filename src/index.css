@@ -1,0 +1,67 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    box-sizing: border-box;
+    font-size: 1.6rem;
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(to bottom right, #f1e8b5, #c2b362);
+    font-family: "Roboto", sans-serif;
+    margin-top: 6rem;
+}
+
+button {
+    padding: 1rem 1.5rem;
+    background: #797dcf;
+    border: 2px solid #5b5dd8;
+    border-radius: .5rem;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: .5rem;
+}
+
+input[type=text] {
+    border-radius: .5rem;
+    padding: 1rem 1.5rem;
+    outline: none;
+    border: 2px solid #797dcf;
+}
+
+input[type=checkbox] {
+    margin-right: .5rem;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.todo-wrapper {
+    background-color: #fff;
+    padding: 2.5rem;
+    border-radius: .5rem;
+}
+
+.todo-form {
+    margin-top: 1.5rem;
+    display: flex;
+}
+
+.todo-list {
+    padding-top: 2rem;
+}
+
+.todo {
+    padding-bottom: 1rem;
+}
